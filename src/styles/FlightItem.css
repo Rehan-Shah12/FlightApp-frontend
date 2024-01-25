@@ -1,0 +1,28 @@
+.FlightItem {
+  border: 1px solid grey;
+  margin: 40px;
+  height: 120px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.location-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+.time-block {
+  padding: 10px 0px;
+}
+.location-block {
+  padding: 10px 0px;
+  font-weight: 700;
+  font-size: larger;
+}
+.flight-number {
+  font-size: large;
+  font-style: italic;
+}

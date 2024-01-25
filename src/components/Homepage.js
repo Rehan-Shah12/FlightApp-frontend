@@ -1,18 +1,14 @@
+import "../styles/Homepage.css";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import Layout from "./Layout/Layout.js";
+import FlightList from "./FlightList.js";
 
 const Homepage = () => {
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    navigate("/login");
-  };
-
   return (
-    <div>
-      Homepage
-      <button onClick={handleLogout}>Log Out</button>
+    <div className=" ">
+      <Layout>
+        <FlightList />
+      </Layout>
     </div>
   );
 };

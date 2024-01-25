@@ -1,0 +1,33 @@
+.SearchSection {
+  background-image: url("https://www.sastaticket.pk/static/landing-image.5584c8f.png");
+  height: 25rem;
+  color: white;
+}
+
+.white-section-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 60px;
+}
+
+.white-section {
+  background-color: white;
+  width: 50%;
+  padding: 6rem;
+  border-radius: 30px;
+}
+.search-filters {
+  display: flex;
+  justify-content: center;
+}
+
+.searchbar {
+  margin: 0px 5px;
+}
+
+.search-button {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
