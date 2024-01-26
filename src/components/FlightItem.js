@@ -1,6 +1,9 @@
 import React from "react";
 import "../styles/FlightItem.css";
 import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setActiveFlight } from "../store/slices/flightSlice";
 
 const formatTime = (dateString) => {
   const options = { hour: "numeric", minute: "numeric", hour12: true };
@@ -14,9 +17,17 @@ const FlightItem = ({
   arrivalTime,
   departureTime,
   planeType,
+  flight,
 }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const formattedDepartureTime = formatTime(departureTime);
   const formattedArrivalTime = formatTime(arrivalTime);
+
+  const handleBookButton = () => {
+    dispatch(setActiveFlight(flight));
+    navigate(`/booking/${flight._id}`);
+  };
 
   return (
     <div className="FlightItem">
@@ -32,7 +43,12 @@ const FlightItem = ({
       <div className="flight-number">{flightNumber}</div>
 
       <div className="book-block">
-        <Button type="primary" shape="round" size={"large"}>
+        <Button
+          type="primary"
+          shape="round"
+          size={"large"}
+          onClick={handleBookButton}
+        >
           Book Now!
         </Button>
       </div>

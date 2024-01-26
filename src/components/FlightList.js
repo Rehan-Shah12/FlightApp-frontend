@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import "../styles/FlightList.css";
 import { useDispatch, useSelector } from "react-redux";
 import FlightItem from "./FlightItem";
-import { getAllFlights, searchFlights } from "../store/thunks/flightThunk";
+import { getAllFlights } from "../store/thunks/flightThunk";
+import { LeftCircleOutlined, RightCircleOutlined } from "@ant-design/icons";
 
 const FlightList = () => {
   const dispatch = useDispatch();
@@ -26,6 +28,7 @@ const FlightList = () => {
         arrivalTime={flight?.arrivalTime}
         departureTime={flight?.departureTime}
         planeType={flight?.planeType}
+        flight={flight}
       />
     ));
 
@@ -34,7 +37,14 @@ const FlightList = () => {
 
   return (
     <div>
-      <h2>Select your departure flight</h2>
+      <div className="top">
+        <h2>Select your departure flight</h2>
+        <div className="icons">
+          <LeftCircleOutlined />
+          <RightCircleOutlined />
+        </div>
+      </div>
+
       {rendered}
     </div>
   );

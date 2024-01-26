@@ -18,9 +18,12 @@ const flightSlice = createSlice({
     setAllFlights: (state, action) => {
       state.allflights = action.payload;
     },
+    setActiveFlight: (state, action) => {
+      state.activeFlight = action.payload;
+    },
   },
 });
 
-export const { setUser, setFilteredFlights, setAllFlights } =
+export const { setUser, setFilteredFlights, setAllFlights, setActiveFlight } =
   flightSlice.actions;
 export default flightSlice.reducer;

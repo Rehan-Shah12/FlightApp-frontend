@@ -1,0 +1,26 @@
+.SeatItem {
+  display: flex;
+  justify-content: space-between;
+}
+
+.seat-box {
+  border: 1px solid gray;
+  width: 30px;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.SeatItem.booked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.seat-box.booked {
+  background-color: lightgray;
+  border-color: darkgray;
+  color: gray;
+}
