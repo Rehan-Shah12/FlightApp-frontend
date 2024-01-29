@@ -7,6 +7,8 @@ const flightSlice = createSlice({
     activeFlight: null,
     filteredFlight: null,
     allflights: null,
+    pageNo: null,
+    pageSize: null,
   },
   reducers: {
     setUser: (state, action) => {
@@ -21,9 +23,15 @@ const flightSlice = createSlice({
     setActiveFlight: (state, action) => {
       state.activeFlight = action.payload;
     },
+    setPageSize: (state,action) => {
+      state.pageSize = action.payload
+    },
+    setPageNo: (state,action) => {
+      state.pageNo = action.payload
+    }
   },
 });
 
-export const { setUser, setFilteredFlights, setAllFlights, setActiveFlight } =
+export const { setUser, setFilteredFlights, setAllFlights, setActiveFlight, setPageSize, setPageNo } =
   flightSlice.actions;
 export default flightSlice.reducer;

@@ -11,6 +11,12 @@
   font-weight: bold;
 }
 
+.username{
+  margin-right: 20px;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
 .logout-button {
   padding: 5px 5px;
   font-size: 15px;
@@ -24,6 +30,25 @@
 
 .logout-button:hover {
   background-color: rgb(236, 78, 11);
+  -webkit-box-shadow: 0px 14px 5px -7px rgba(0, 0, 0, 0.33);
+  -moz-box-shadow: 0px 14px 5px -7px rgba(0, 0, 0, 0.33);
+  box-shadow: 0px 14px 5px -7px rgba(0, 0, 0, 0.33);
+  cursor: pointer;
+}
+
+.login-button{
+  padding: 5px 5px;
+  font-size: 15px;
+  border: none;
+  background-color: rgb(42, 63, 82);
+  color: white;
+  font-weight: 700;
+  border-radius: 20px;
+  width: 6rem;
+}
+
+.login-button:hover {
+  background-color: rgb(51, 160, 41);
   -webkit-box-shadow: 0px 14px 5px -7px rgba(0, 0, 0, 0.33);
   -moz-box-shadow: 0px 14px 5px -7px rgba(0, 0, 0, 0.33);
   box-shadow: 0px 14px 5px -7px rgba(0, 0, 0, 0.33);

@@ -1,14 +1,20 @@
-import React, { useState } from "react";
-import { Modal, Button } from "antd";
+
+import React, { useState, useEffect } from "react";
+import { Modal } from "antd";
 import "../styles/SeatItem.css";
 import { useDispatch, useSelector } from "react-redux";
 import { createBooking } from "../store/thunks/flightThunk";
 
-const SeatItem = ({ seat }) => {
+const SeatItem = ({ seat, onBookingConfirmed }) => {
   const [open, setOpen] = useState(false);
+  const [seatStatus, setSeatStatus] = useState(seat.status);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.flight.user);
   const flight = useSelector((state) => state.flight.activeFlight);
+
+  useEffect(() => {
+    setSeatStatus(seat.status);
+  }, [seat.status]);
 
   const showModal = () => {
     if (seat.status !== "booked") {
@@ -16,7 +22,8 @@ const SeatItem = ({ seat }) => {
     }
   };
 
-  const handleConfirm = () => {
+  const handleOk = (event) => {
+    event.stopPropagation();
     dispatch(
       createBooking(
         user._id,
@@ -26,33 +33,43 @@ const SeatItem = ({ seat }) => {
         seat.price
       )
     );
-    setOpen(!true);
+    setOpen(false);
+
+    // Call the callback function when booking is confirmed
+    onBookingConfirmed();
   };
 
-  const handleCancel = () => {
+  const handleCancel = (event) => {
+    event.stopPropagation();
     setOpen(false);
   };
 
-  const isBooked = seat.status === "booked";
-
   return (
-    <div className={`SeatItem ${isBooked ? "booked" : ""}`} onClick={showModal}>
-      <div className={`seat-box ${isBooked ? "booked" : ""}`}>
+    <div className={`SeatItem ${seatStatus === "booked" ? "booked" : ""} ${seat.classes}`}>
+      <div className={`seat-box ${seatStatus === "booked" ? "booked" : ""} ${seat.classes}`} onClick={showModal}>
         {seat?.seatNumber}
       </div>
 
       <Modal
         open={open}
         title="Confirm Booking"
-        onOk={handleConfirm}
+        onOk={handleOk}
         onCancel={handleCancel}
-        okText="Confirm"
-        cancelText="Cancel"
+        afterClose={() => setSeatStatus(seat.status)}
+        footer={(_, { OkBtn, CancelBtn }) => (
+          <>
+            <CancelBtn />
+            <OkBtn />
+          
+          </>
+          
+        )}
       >
-        <p>Are you sure you want to book this seat?</p>
+          <p>Price : {seat?.price}</p>
       </Modal>
     </div>
   );
 };
 
 export default SeatItem;
+

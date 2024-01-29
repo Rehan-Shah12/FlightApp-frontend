@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import { Button, Input, Space } from "antd";
 import "../../styles/SearchSection.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchFlights } from "../../store/thunks/flightThunk.js";
+import { useNavigate } from "react-router-dom";
 
 const SearchSection = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
+  const pageNo = useSelector((state) => state.flight.pageNo)
+  const pageSize = useSelector((state) => state.flight.pageSize)
+
+  console.log("PAGE NO: ", pageNo)
+  console.log("PAGE SIZE: ", pageSize)
+
   const [filters, setFilters] = useState({
     departureCity: "",
     arrivalCity: "",
@@ -19,13 +27,14 @@ const SearchSection = () => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const filteredFilters = Object.fromEntries(
       Object.entries(filters).filter(
         ([key, value]) => value !== "" && value !== undefined
       )
     );
-
+  
+    await navigate("/");
     dispatch(searchFlights(filteredFilters));
   };
 

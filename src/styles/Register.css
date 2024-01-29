@@ -5,12 +5,12 @@ html {
   height: 100%;
 }
 
-.Login {
+.Register {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-image: url(../assets/ross-parmly-rf6ywHVkrlY-unsplash.jpg);
+  background-image: url(../assets/philip-myrtorp-iiqpxCg2GD4-unsplash.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -30,7 +30,7 @@ html {
   font-weight: 700;
   border-radius: 20px;
   width: 15rem;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
 }
 
 .submit-button:hover {
@@ -68,30 +68,6 @@ h1 {
   text-align: center;
 }
 
-.guest-wrapper-div{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.guest-button{
-  padding: 7px 20px;
-  font-size: 20px;
-  border: none;
-  background-color:  rgb(42, 63, 82);
-  color: white;
-  font-weight: 700;
-  border-radius: 20px;
-  width: 15rem;
-  margin-bottom: 40px;
-}
-.guest-button:hover {
-  background-color: rgb(32, 45, 56);
-  -webkit-box-shadow: 0px 14px 5px -7px rgba(0, 0, 0, 0.33);
-  -moz-box-shadow: 0px 14px 5px -7px rgba(0, 0, 0, 0.33);
-  box-shadow: 0px 14px 5px -7px rgba(0, 0, 0, 0.33);
-  cursor: pointer;
-}
-
 .sub-text:hover{
-cursor: pointer;
-}
+    cursor: pointer;
+    }

@@ -1,5 +1,30 @@
 .BookingContent {
-  padding: 100x;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.flight-info{
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  border: 1px dotted gray;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 30px;
+}
+
+.first .second{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Top{
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }

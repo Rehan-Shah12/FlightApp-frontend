@@ -12,10 +12,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<PrivateRoutes />}>
-          <Route path="/" element={<Homepage />} />
           <Route path="/booking/:id" element={<BookingArea />} />
         </Route>
-
+        <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>

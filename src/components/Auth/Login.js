@@ -5,25 +5,28 @@ import axios from "axios";
 import { Input } from "antd";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import {setUser} from "../../store/slices/flightSlice.js"
 
 function Login() {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
-    console.log(`Identifier: ${identifier}   Password: ${password}`);
     try {
       const res = await axios.post("http://localhost:8080/api/v1/auth/login", {
         identifier,
         password,
       });
-      const { token, userId, message } = res.data;
+      const { token, userId, user, message } = res.data;
 
       localStorage.setItem("token", token);
       localStorage.setItem("userId", userId);
+      dispatch(setUser(user));
 
       toast.success(message);
       navigate("/");
@@ -33,6 +36,9 @@ function Login() {
     }
   };
 
+  const handleRegisterNavigation = () => {
+    navigate("/register")
+  }
   return (
     <div className="Login">
       <div className="content">
@@ -51,9 +57,15 @@ function Login() {
             className="input"
             type="password"
           />
+          <sub onClick={handleRegisterNavigation} className='sub-text'>Not Registered Yet?</sub>
           <div className="submit-wrapper-div">
             <button type="submit" className="submit-button">
               LOGIN
+            </button>
+          </div>
+          <div className="guest-wrapper-div">
+            <button onClick={()=> navigate('/')} className="guest-button">
+              LOGIN as Guest
             </button>
           </div>
         </form>
