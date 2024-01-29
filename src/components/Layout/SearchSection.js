@@ -6,13 +6,8 @@ import { searchFlights } from "../../store/thunks/flightThunk.js";
 import { useNavigate } from "react-router-dom";
 
 const SearchSection = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const pageNo = useSelector((state) => state.flight.pageNo)
-  const pageSize = useSelector((state) => state.flight.pageSize)
-
-  console.log("PAGE NO: ", pageNo)
-  console.log("PAGE SIZE: ", pageSize)
 
   const [filters, setFilters] = useState({
     departureCity: "",
@@ -33,7 +28,7 @@ const SearchSection = () => {
         ([key, value]) => value !== "" && value !== undefined
       )
     );
-  
+
     await navigate("/");
     dispatch(searchFlights(filteredFilters));
   };
@@ -48,7 +43,7 @@ const SearchSection = () => {
                 <Input
                   placeholder="Flying From (City)"
                   className="searchbar"
-                  value={filters.departureCity}
+                  value={filters?.departureCity}
                   onChange={(e) =>
                     handleInputChange("departureCity", e.target.value)
                   }
@@ -56,7 +51,7 @@ const SearchSection = () => {
                 <Input
                   placeholder="Flying To (City)"
                   className="searchbar"
-                  value={filters.arrivalCity}
+                  value={filters?.arrivalCity}
                   onChange={(e) =>
                     handleInputChange("arrivalCity", e.target.value)
                   }
@@ -64,7 +59,7 @@ const SearchSection = () => {
                 <Input
                   placeholder="Flight#"
                   className="searchbar"
-                  value={filters.flightNumber}
+                  value={filters?.flightNumber}
                   onChange={(e) =>
                     handleInputChange("flightNumber", e.target.value)
                   }

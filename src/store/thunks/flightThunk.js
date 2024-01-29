@@ -16,7 +16,6 @@ export const searchFlights = (filters) => async (dispatch) => {
         },
       }
     );
-    console.log("Respone Search Flight:", response);
 
     dispatch(setFilteredFlights(response?.data?.flights));
     console.log("Filtered: ", response?.data?.flights);
@@ -49,7 +48,6 @@ export const getFlightById = (id) => async (dispatch) => {
     const response = await axios.get(
       `http://localhost:8080/api/v1/flight/${id}`
     );
-    console.log("Active Flight Response:", response.data);
     dispatch(setActiveFlight(response.data));
   } catch (error) {
     console.log("Error Getting Flight By Id");
@@ -92,41 +90,7 @@ export const createBooking =
         },
         { headers }
       );
-
-      console.log("Get Response m", getresponse);
     } catch (error) {
       console.log("Error Creating Booking");
     }
   };
-
-// export const createBooking =
-//   (user, flight, classes, seatNumber, totalPrice) => async () => {
-//     try {
-//       const accessToken = localStorage.getItem("token")
-//       console.log("token: ", accessToken)
-
-//       // Include the token in the Authorization header
-//       const headers = {
-//         Authorization: `Bearer ${accessToken}`,
-//       };
-
-//       // Make the HTTP requests with the headers
-//       await axios.post("http://localhost:8080/api/v1/booking/create", {
-//         user,
-//         flight,
-//         classes,
-//         seatNumber,
-//         totalPrice,
-//       }, { headers });
-
-//       const getresponse = await axios.patch(`http://localhost:8080/api/v1/flight/update/${flight}`, {
-//         seatNumber,
-//       }, { headers });
-
-//       console.log("Get Response:", getresponse);
-
-//       console.log("Get Response m", getresponse);
-//     } catch (error) {
-//       console.log("Error Creating Booking");
-//     }
-//   };

@@ -6,7 +6,7 @@ import { Input } from "antd";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Login() {
+function Register() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -17,30 +17,31 @@ function Login() {
   const handleRegisterSubmit = async (event) => {
     event.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8080/api/v1/auth/register", {
-        name,
-        phone,
-        email,
-        password,
-      });
-      const {message } = res.data;
+      const res = await axios.post(
+        "http://localhost:8080/api/v1/auth/register",
+        {
+          name,
+          phone,
+          email,
+          password,
+        }
+      );
+      const { message } = res.data;
       toast.success(message);
       navigate("/login");
     } catch (error) {
       console.error("Error:", error);
-    
-    if (error?.response?.data?.error) {
-      toast.error(error?.response?.data?.error);
-    } else {
-      
-      toast.error("Register Error");
+
+      if (error?.response?.data?.error) {
+        toast.error(error?.response?.data?.error);
+      } else {
+        toast.error("Register Error");
+      }
     }
-  }
   };
   const handleRegisterNavigation = () => {
-    navigate("/login")
-  }
-
+    navigate("/login");
+  };
 
   return (
     <div className="Register">
@@ -64,7 +65,7 @@ function Login() {
             placeholder="Enter Email"
             onChange={(e) => setEmail(e.target.value)}
             className="input"
-            type='email'
+            type="email"
           />
           <Input
             size="large"
@@ -72,9 +73,10 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             className="input"
             type="password"
-
           />
-          <sub onClick={handleRegisterNavigation} className='sub-text'>Already a User?</sub>
+          <sub onClick={handleRegisterNavigation} className="sub-text">
+            Already a User?
+          </sub>
           <div className="submit-wrapper-div">
             <button type="submit" className="submit-button">
               LOGIN
@@ -87,4 +89,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

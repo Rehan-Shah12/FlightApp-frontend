@@ -31,25 +31,39 @@ const FlightItem = ({
   };
 
   return (
-    <div className={`FlightItem ${viewMode === 'grid' ? 'grid' : ''}`}>
-      <div className={`name ${viewMode === 'grid' ? 'name-grid' : ''}`}>{planeType}</div>
-      <div className={`location-wrapper ${viewMode === 'grid' ? 'location-wrapper-grid' : ''}`}>
-        <div className={`time-block ${viewMode === 'grid' ? 'time-block-grid' : ''}`}>
+    <div className={`FlightItem ${viewMode === "grid" ? "grid" : ""}`}>
+      <div className={`name ${viewMode === "grid" ? "name-grid" : ""}`}>
+        {planeType}
+      </div>
+      <div
+        className={`location-wrapper ${
+          viewMode === "grid" ? "location-wrapper-grid" : ""
+        }`}
+      >
+        <div
+          className={`time-block ${
+            viewMode === "grid" ? "time-block-grid" : ""
+          }`}
+        >
           {formattedDepartureTime} - {formattedArrivalTime}
         </div>
-        <div className={`location-block ${viewMode === 'grid' ? 'location-block-grid' : ''}`}>
+        <div
+          className={`location-block ${
+            viewMode === "grid" ? "location-block-grid" : ""
+          }`}
+        >
           {departureCity} - {arrivalCity}
         </div>
       </div>
-      {
-  viewMode === 'list' && (
-    <div className={`flight-number ${viewMode === 'grid' ? 'flight-number-grid' : ''}`}>
-      {flightNumber}
-    </div>
-  )
-}
-      
-
+      {viewMode === "list" && (
+        <div
+          className={`flight-number ${
+            viewMode === "grid" ? "flight-number-grid" : ""
+          }`}
+        >
+          {flightNumber}
+        </div>
+      )}
       <div className="book-block">
         <Button
           type="primary"
