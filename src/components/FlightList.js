@@ -17,7 +17,7 @@ const FlightList = () => {
   const filteredFlights = useSelector((state) => state?.flight?.filteredFlight);
   const [rendered, setRendered] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(5);
+  const [totalPages, setTotalPages] = useState();
   const [viewMode, setViewMode] = useState("list");
   const pageSize = 6;
 
@@ -31,6 +31,17 @@ const FlightList = () => {
 
   const flightsToRender =
     filteredFlights?.length > 0 ? filteredFlights : allflights;
+  // let flightsToRender = [];
+
+  // if (filteredFlights?.length > 0) {
+  //   flightsToRender = filteredFlights;
+  // } else {
+  //   flightsToRender = [];
+  // }
+
+  // const flightsToRender =
+  //   filteredFlights?.length > 0 ? filteredFlights : allflights;
+  // const flightsToRender = filteredFlights?.length > 0 ?  : [];
 
   useEffect(() => {
     const renderedFlights = flightsToRender?.map((flight) => (
@@ -59,6 +70,8 @@ const FlightList = () => {
   const handleViewMode = (mode) => {
     setViewMode(mode);
   };
+
+  console.log("Rendered Test: ", rendered);
 
   return (
     <div>

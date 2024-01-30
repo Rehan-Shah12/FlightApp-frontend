@@ -22,6 +22,9 @@ const BookingContent = () => {
   const formattedDepartureTime = formatTime(flight?.departureTime);
   const formattedArrivalTime = formatTime(flight?.arrivalTime);
 
+  const allEconomyFlights = [];
+  const allBusinessFlights = [];
+
   useEffect(() => {
     const fetchData = async () => {
       if (!user) {
@@ -52,17 +55,44 @@ const BookingContent = () => {
     await dispatch(getFlightById(flightId));
   };
 
-  const sortedSeats = flight?.seats ? [...flight.seats] : [];
+  console.log("Flights  Check:", flight?.seats);
 
-  sortedSeats.sort((a, b) => a.classes.localeCompare(b.classes));
+  flight?.seats.map((seat) => {
+    if (seat?.classes === "economy") {
+      allEconomyFlights.push(seat);
+    }
+    if (seat?.classes === "business") {
+      allBusinessFlights.push(seat);
+    }
+  });
 
-  const rendered = sortedSeats?.map((seat, index) => (
+  const renderedEconomicFlights = allEconomyFlights?.map((seat, index) => (
     <SeatItem
       key={`${seat._id}-${index}`}
       seat={seat}
       onBookingConfirmed={() => handleBookingConfirmed(seat)}
     />
   ));
+  const renderedBusinessFlights = allBusinessFlights?.map((seat, index) => (
+    <SeatItem
+      key={`${seat._id}-${index}`}
+      seat={seat}
+      onBookingConfirmed={() => handleBookingConfirmed(seat)}
+    />
+  ));
+
+  // const sortedSeats = flight?.seats ? [...flight.seats] : [];
+  // console.log("Sort Test", sortedSeats);
+
+  // sortedSeats.sort((a, b) => a.classes.localeCompare(b.classes));
+
+  // const rendered = sortedSeats?.map((seat, index) => (
+  //   <SeatItem
+  //     key={`${seat._id}-${index}`}
+  //     seat={seat}
+  //     onBookingConfirmed={() => handleBookingConfirmed(seat)}
+  //   />
+  // ));
 
   return (
     <div className="Top">
@@ -87,7 +117,19 @@ const BookingContent = () => {
         </div>
       </div>
 
-      <div className="BookingContent">{rendered}</div>
+      {/* <div className="BookingContent">{rendered}</div> */}
+      <div>
+        <div>
+          <div style={{ marginLeft: "50px", marginTop: "50px" }}>
+            Business Seats
+          </div>
+          <div className="BookingContent">{renderedBusinessFlights}</div>
+        </div>
+        <div>
+          <div style={{ marginLeft: "50px" }}>Economy Seats</div>
+          <div className="BookingContent">{renderedEconomicFlights}</div>
+        </div>
+      </div>
     </div>
   );
 };

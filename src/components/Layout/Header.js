@@ -17,9 +17,9 @@ const Header = () => {
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
 
-  if (userId && token) {
-    dispatch(getUserById(userId));
-  }
+  // if (userId && token) {
+  //   dispatch(getUserById(userId));
+  // }
 
   const handleLogout = () => {
     localStorage.removeItem("token");

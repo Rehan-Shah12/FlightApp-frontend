@@ -17,8 +17,9 @@ export const searchFlights = (filters) => async (dispatch) => {
       }
     );
 
+    console.log("THUNKS: ", response?.data?.flights);
     dispatch(setFilteredFlights(response?.data?.flights));
-    console.log("Filtered: ", response?.data?.flights);
+    // console.log("Filtered: ", response?.data?.flights);
   } catch (error) {
     console.error("Error searching flights:", error);
   }
